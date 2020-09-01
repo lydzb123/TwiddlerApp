@@ -13,17 +13,22 @@
 
   <div class="nav">
     <div class="logo">
-      <img src="https://img.icons8.com/android/96/000000/twitter.png" alt="Twitter bird logo" />
+      <img src="https://img.icons8.com/android/48/000000/twitter.png" alt="Twitter bird logo" />
       <h1>Twitter</h1>
     </div>
 
 
   </div>
+  <div class="newtweet">
+    <input type="text" placeholder="What are you up to?">
+
+
+    <button><img src="https://img.icons8.com/material-rounded/48/000000/plus.png" />
+      <h2>Create New Tweet</h2>
+    </button>
+  </div>
 
   <div class="feed">
-
-
-
     <script>
       $(document).ready(function () {
         var $feed = $('.feed');
@@ -33,16 +38,18 @@
         while (index >= 0) {
           var tweet = streams.home[index];
           console.log(tweet);
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div></div>').addClass("tweet");
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           var $timestamp = $('<div></div)').addClass("timestamp");
           $timestamp.text('Posted on ' + tweet.created_at);
           $timestamp.appendTo($tweet);
-
           $tweet.appendTo($feed);
           index -= 1;
         }
       });
+
+      var $newTweet = $('<div></div>');
+
     </script>
   </div>
 
