@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="jquery.js"></script>
-    <script src="dataGenerator.js"></script>
-  </head>
-  <body>
-    <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+<head>
+  <script src="jquery.js"></script>
+  <script src="dataGenerator.js"></script>
+  <link rel="stylesheet" href="styles.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <div class="nav">
+    <div class="logo">
+      <img src="https://img.icons8.com/android/96/000000/twitter.png" alt="Twitter bird logo" />
+      <h1>Twitter</h1>
+    </div>
+
+
+  </div>
+
+  <div class="feed">
+
+
+
+    <script>
+      $(document).ready(function () {
+        var $feed = $('.feed');
+        $feed.html('');
 
         var index = streams.home.length - 1;
-        while(index >= 0){
+        while (index >= 0) {
           var tweet = streams.home[index];
+          console.log(tweet);
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var $timestamp = $('<div></div)').addClass("timestamp");
+          $timestamp.text('Posted on ' + tweet.created_at);
+          $timestamp.appendTo($tweet);
+
+          $tweet.appendTo($feed);
           index -= 1;
         }
-
       });
-
     </script>
-  </body>
+  </div>
+
+</body>
+
 </html>
+
+
+<!-- Show the user new tweets somehow. (You can show them automatically as they're created, or create a button that displays new tweets.) -->
+<!-- Display the timestamps of when the tweets were created. This timestamp should reflect the actual time the tweets were created, and should not just be hardcoded. -->
+<!-- Design your interface so that you want to look at and use the product you're making. -->
+<!-- Allow the user to click on a username to see that user's timeline. -->
+<!-- Show when the tweets were created in a human-friendly way (eg "10 minutes ago"). You'll want to find and use a library for this. -->
+<!-- Allow the user to tweet. -->

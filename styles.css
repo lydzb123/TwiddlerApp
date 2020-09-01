@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+
+}
+
+.feed {
+    margin-top: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    display: inline-block;
+    background:grey;
+    text-align: left;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+
+.nav {
+    background :lightgrey;
+    text-align: center;
+}
+/* 
+.logo {
+    background: green;
+    display: inline-block;
+} */
+.logo img {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.logo h1{
+    display: inline;
+    padding: 0 10px;
+    font-size: 50px;
+
+    color: white;
+    background: black;
+    box-shadow: 10px 10px white;
+}
+
+
+
+.timestamp {
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    /* background: red; */
+    text-align: right;
+}
