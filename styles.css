@@ -3,7 +3,7 @@ body {
     padding: 0;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    background: hsl(235, 50%, 87%);
+    background: hsl(237, 82%, 96%);
 
 }
 
@@ -13,53 +13,61 @@ body {
     line-height: 20px;
     display: inline-block;
     text-align: left;
-    /* background: rgb(174, 182, 214); */
-    width: 80%;
+    height: 10px;
     font-family: 'Quicksand', sans-serif;
+
 
 }
 
 .tweet {
-    background: rgb(147, 152, 184);
-    box-shadow: 10px 10px rgb(36, 35, 35);
+    background: rgba(147, 152, 184, 0.356);
+    /* box-shadow: 10px 10px rgb(36, 35, 35); */
     padding: 12px 24px 12px 24px;
     margin: 20px;
+    text-transform: capitalize;
+
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
 .tweet:hover {
-    background-color: rgb(194, 255, 25);
+    background-color: rgb(31, 28, 59);
+    /* box-shadow: 10px 10px rgb(0, 0, 0); */
+    color: white;
+
+    /* background-color: rgb(194, 255, 25); */
     font-size: 20px;
     line-height: 24px;
   }
 
 
-.nav {
-    background: rgb(246, 217, 217);
-    /* text-align: center; */
-}
-/* 
+
 .logo {
-    background: green;
+    height: 100px;
     display: inline-block;
-} */
-.logo img {
-    margin-top: 0px;
-    margin-left: 10px;
-    padding: 0;
+    background-color: rgb(33, 31, 53);
+    width: 100%;
+
 }
+
 
 .logo h1{
     /* display: inline; */
-    padding: 0 10px;
-    font-size: 50px;
+    padding: 20px;
+    font-size: 60px;
+    line-height: 0px;
+    text-shadow: 0px 4px 6px rgba(24, 11, 78, 0.678);
 
     color: white;
-    background: rgb(0, 0, 0);
 }
 
 
+.updatePanel {
+    /* background:black; */
+    margin: 0 auto;
+    padding: 0px 0 40px 0;
+
+}
 
 .timestamp {
     color: white;
@@ -67,4 +75,41 @@ body {
     font-style: italic;
     line-height: 24px;
     text-align: right;
+}
+
+#twitterText {
+    width: 100%;
+    min-height: 30vh;
+    font-size: 30px;
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+    box-sizing: border-box;
+    padding: 20px;
+    resize: none;
+    scrollbar-color: light;
+    background: rgb(233,189,229);
+    background: linear-gradient(246deg, rgb(245, 198, 251) 24%, rgb(167, 152, 255) 100%);
+    color:  white;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+
+
+#tweetButton {
+    width: 140px;
+    height: 40px;
+    background: rgb(115, 93, 189);
+    color: white;
+    border: none;
+    border-radius: 4px;
+
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+#tweetButton:active, #tweetButton:focus{
+    background: rgb(30, 36, 70);
+    outline: none;
 }

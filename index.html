@@ -6,52 +6,105 @@
   <script src="dataGenerator.js"></script>
   <link rel="stylesheet" href="styles.css" type="text/css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>Twiddler</title>
 </head>
 
 <body>
+  <!-- JQUERY SCRIPTS -->
 
-
+  <!-- //HTML -->
   <div class="nav">
     <div class="logo">
-      <img src="https://img.icons8.com/android/48/000000/twitter.png" alt="Twitter bird logo" />
-      <h1>Twitter</h1>
+      <h1>😎Twiddler</h1>
     </div>
 
-
   </div>
-  <div class="newtweet">
-    <input type="text" placeholder="What are you up to?">
 
-
-    <button><img src="https://img.icons8.com/material-rounded/48/000000/plus.png" />
-      <h2>Create New Tweet</h2>
-    </button>
+  <div class="updatePanel">
+    <textarea name="text" maxlength="280" id="twitterText" placeholder="What are you up to?"></textarea><br>
+    <div id="twitterTextCount"></div><br>
+    <button type="submit" id="tweetButton">Tweet</button>
   </div>
 
   <div class="feed">
-    <script>
-      $(document).ready(function () {
-        var $feed = $('.feed');
-        $feed.html('');
+  </div>
 
-        var index = streams.home.length - 1;
-        while (index >= 0) {
-          var tweet = streams.home[index];
-          console.log(tweet);
-          var $tweet = $('<div></div>').addClass("tweet");
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          var $timestamp = $('<div></div)').addClass("timestamp");
-          $timestamp.text('Posted on ' + tweet.created_at);
-          $timestamp.appendTo($tweet);
-          $tweet.appendTo($feed);
-          index -= 1;
-        }
+
+
+
+  <script>
+
+    // ONLOAD
+    $(document).ready(function () {
+      var $feed = $('.feed');
+      $feed.html('');
+
+
+
+      var text_max = 280;
+      $('#twitterTextCount').html(text_max + ' characters remaining');
+
+      $('#twitterText').keyup(function () {
+        var text_length = $('#twitterText').val().length;
+        var text_remaining = text_max - text_length;
+        $('#twitterTextCount').html(text_remaining + ' characters remaining');
       });
 
-      var $newTweet = $('<div></div>');
 
-    </script>
-  </div>
+
+      var index = streams.home.length - 1;
+      while (index >= 0) {
+        var tweet = streams.home[index];
+
+        var $tweet = $('<div></div>').addClass("tweet");
+        var $tweetUser = tweet.user;
+        console.log($tweet);
+
+        console.log($tweetUser);
+        $tweet.text("@" + $tweetUser + ": " + tweet.message);
+        var $timestamp = $('<div></div)').addClass("timestamp");
+
+        $timestamp.text('Posted on ' + tweet.created_at);
+        $timestamp.appendTo($tweet);
+        $tweet.appendTo($feed);
+        index -= 1;
+      }
+
+
+      let $btnNewTweet = $("#tweetButton").click(() => {
+        createNewTweet();
+      });
+    });
+
+
+    const createNewTweet = () => {
+      var tweetText = document.getElementById("twitterText").value;  //accesses textarea input
+      console.log(tweetText);
+    };
+
+    const clickUser = () => {
+
+
+    }
+
+
+
+
+
+
+
+  </script>
+
+  <!-- Define JS functions:
+createNewTweet
+reloadFeed
+clickUser
+clickHash -->
+
+
+
+
+
 
 </body>
 
