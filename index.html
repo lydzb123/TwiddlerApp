@@ -2,34 +2,22 @@
 <html>
 
 <head>
+
   <script src="jquery.js"></script>
   <script src="dataGenerator.js"></script>
   <link rel="stylesheet" href="styles.css" type="text/css">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/794e560f97.js" crossorigin="anonymous"></script>
   <title>Twiddler</title>
 
 
 </head>
 
 <body>
-  <!-- JQUERY SCRIPTS -->
-
-
-
-  <!-- //HTML -->
-
-
-
-  <!-- <div class="updatePanel">
-    <textarea name="text" maxlength="280" id="twitterText" placeholder="What are you up to?"></textarea><br>
-    <div id="twitterTextCount"></div><br>
-    <button type="submit" id="tweetButton">Tweet</button>
-  </div> -->
 
   <div class="feed">
   </div>
-
-
 
 
   <script>
@@ -38,16 +26,20 @@
     $(document).ready(function () {
 
 
+      window.visitor = "lydia";
+      // window.location;
+
+
       // HEADER CLASS (Twitter Title)
       $('body').prepend('<div class="header"></div>');
-      $('.header').html("<a href ='index.html'><h1>😎Twiddler</h1></a>")
+      $('.header').html("<a href='index.html'><h1>😎Twiddler</h1></a>")
 
       // UPDATEPANEL CLASS (Text Area, Character Count, Update Button)
       $('.header').append('<div class="updatePanel"></div>');
       $('.updatePanel').html('<textarea name="text" maxlength="280" id="twitterText" placeholder="What are you up to? "></textarea>');
       $('.updatePanel').append('<div id="twitterTextCount"></div><br><button type="submit" id="tweetButton">Tweet</button>');
 
-      // CHARACTER TEXT COUNT FUNCTION
+      // CHARACTER TEXT COUNT FUNCTION (Set Max, Changes Count on Keyup)
       var textMax = 280;
       $('#twitterTextCount').html(textMax + ' characters remaining');
       $('#twitterText').keyup(() => {
@@ -59,47 +51,131 @@
 
       // TWITTER FEED
       var $feed = $('.feed');
-      $feed.html('');
+      // $feed.html('');
+      // console.log($feed);
+      $feed.html('<i class="fas fa-sync-alt"></i>');
+
+      // Trending Topics: <button>#trending</button> 
+
+      $("#tweetButton").click(() => {
+        createNewTweet();
+      });
 
 
+      const createNewTweet = () => {
+        var message = $("#twitterText").val();
+        // console.log(writeTweet(message));
+        $feed.prepend('<div>' + message + '</div>');
+        // $(".newTweet").text(streams.users.visitor, message);
+        console.log($feed[0].innerHTML);
+        // location.reload();
+        // setTimeout(function () { loadFeed() }, 1000);
+        // console.log(message);
+        // console.log(streams.users);
+
+        // this is currently returning undefined
+        // should create a new tweet and add it to the feed/stream
+        // should refresh stream
+
+      };
 
 
       var index = streams.home.length - 1;
-      while (index >= 0) {
-        var tweet = streams.home[index];
+      var username;
 
-        var $tweet = $('<div></div>').addClass("tweet");
-        var $tweetUser = tweet.user;
+      const loadFeed = () => {
+        while (index >= 0) {
 
-        console.log($tweetUser);
-        $tweet.text("@" + $tweetUser + ": " + tweet.message);
-        var $timestamp = $('<div></div)').addClass("timestamp");
+          var tweet = streams.home[index];
 
-        $timestamp.text('Posted on ' + tweet.created_at);
-        $timestamp.appendTo($tweet);
-        $tweet.appendTo($feed);
-        index -= 1;
+          var $tweet = $('<div></div>').addClass("tweet");  // TWEET CLASS $ is representational of the jqwery dom
 
+          $tweetUser = $('<div></div>').addClass("tweetUser"); // TWEETUSER CLASS
+          $tweetUser.text('@' + tweet.user); // @USERNAME:
+          $tweetUser.prependTo($tweet);
 
+          $tweetUser[0].innerHTML.replace('@', '');
+
+          var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
+          $message.text(tweet.message);
+          $message.appendTo($tweet);
+
+          var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
+          $timestamp.text('Posted on ' + tweet.created_at);
+          $timestamp.appendTo($tweet);
+
+          $tweet.appendTo($feed);
+
+          index -= 1;
+
+        }
       }
 
+      loadFeed();
 
 
-
-      let $btnNewTweet = $("#tweetButton").click(() => {
-        createNewTweet();
+      $(".tweetUser").click((event) => { // Should call on function that filters for 
+        var username = $(event.target).text().replace('@', '');
+        usersFeedRefresh(username);
       });
+
+
+
+
+      // users is an array of strings -- all the usernames that you're following.
+      // streams is an object with two properties, users and home.
+      // streams.home is an array of all tweets from all the users you're following.
+      // streams.users is an object with properties for each user. streams.users.shawndrost has all of shawndrost's tweets.
+
+
+
+
+
     });
 
 
-    const createNewTweet = () => {
-      var tweetText = document.getElementById("twitterText").value;  //accesses textarea input
-      console.log(tweetText);
-    };
+
+
+
+    const usersFeedRefresh = (username) => {
+      // console.log(username);
+      var index = streams.users[username].length - 1;
+
+      // COMEBACK TO FIX THE FEED!
+      var $feed = $('.feed');
+      $feed.html('');
+      while (index >= 0) {
+
+
+        var tweet = streams.users[username][index];
+        // console.log('index: ' + index + 'tweet: ' + tweet.message);
+
+        var $tweet = $('<div></div>').addClass("tweet");  // TWEET CLASS $ is representational of the jqwery dom
+
+        $tweetUser = $('<div></div>').addClass("tweetUser"); // TWEETUSER CLASS
+        $tweetUser.text('@' + tweet.user); // @USERNAME:
+        $tweetUser.prependTo($tweet);
+
+        var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
+        $message.text(tweet.message);
+        $message.appendTo($tweet);
+
+        var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
+        $timestamp.text('Posted on ' + tweet.created_at);
+        $timestamp.appendTo($tweet);
+
+        $tweet.appendTo($feed);
+        // console.log(tweet);
+        index -= 1;
+      }
+    }
+
+
+
 
     const clickUser = () => {
 
-
+      //when username is clicked, refresh feed with only scpecified username's tweets
 
     }
 
@@ -110,6 +186,9 @@
 
 
   </script>
+  <footer>
+    BAH
+  </footer>
 
   <!-- Define JS functions:
 createNewTweet
