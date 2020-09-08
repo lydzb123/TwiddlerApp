@@ -4,8 +4,38 @@ body {
     padding: 0;
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    background: hsl(237, 82%, 96%);
+    background: rgb(236, 237, 253);
 
+}
+
+input {
+    padding: 5px;
+    margin-top: 3px;
+    /* outline: none; */
+    border: 1px solid rgb(65, 65, 65);
+    /* display: inline-block; */
+    /* width: 100%; */
+    background-color: rgb(255, 189, 251);
+}
+
+#login, #signup {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px black;
+    padding: 4px;
+    margin-right: 2px;
+}
+
+#login:active, #signup:active {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 2px 2px black;
+
+    color: white;
+
+}
+
+
+h4 {
+    margin: 0px 0px 10px 0;
 }
 
 .feed {
@@ -20,12 +50,16 @@ body {
 
 .tweet {
     /* background: rgba(147, 152, 184, 0.26); */
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 12px 30px 12px 40px;
-    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    width: 550px;
     color: rgb(40, 40, 48);
-    transition: all 0.3s ease-in-out;
-    margin-bottom: 10px;
+    transition: all 0.1s ease-in;
+    margin-bottom: 20px;
+    /* border: 1px solid rgb(24, 24, 24); */
+    box-shadow: 0px 2px 4px #cf67e255;
 }
 
 .tweet:hover {
@@ -59,11 +93,12 @@ h1{
 }
 
 .timestamp {
-    color: rgb(187, 183, 190);
-    font-size: 11px;
+    color: rgb(131, 131, 131);
+    font-size: 12px;
     margin-bottom: 0;
     font-style: italic;
     text-align: right;
+    margin-right: -15px;
 }
 
 
@@ -83,6 +118,11 @@ textarea:focus{
 
 }
 
+textarea:active{
+    height: 10em;
+
+}
+
 #twitterText {
     width: 100%;
     font-size: 30px;
@@ -92,9 +132,11 @@ textarea:focus{
     padding: 40px 50px 40px 50px;
     resize: none;
     scrollbar-color: light;
-    background: rgb(233,189,229);
-    background: linear-gradient(246deg, rgb(245, 198, 251) 24%, rgb(167, 152, 255) 100%);
+    /* background: rgb(233,189,229); */
+    background: linear-gradient(246deg, #f5c6fb 24%, #a798ff 100%);
     color:  white;
+
+
 }
 
 
@@ -140,12 +182,9 @@ a {
 .tweetUser {
     font-size: 14px;
     font-weight: bold;
-    margin-left: -1em;
     color: rgb(255, 129, 228);
     width: 100%;
     transition: all .5ms ease-in-out;
-
-
 }
 
 .tweetUser:hover {
@@ -156,6 +195,7 @@ a {
 
 
 
+
 .fas {
     color:#5a6386;
     font-size: 24px;
@@ -163,6 +203,20 @@ a {
     font-family: 'Quicksand', sans-serif;
 }
 
-.refresh {
-    font-family: 'Quicksand', sans-serif;
+#refreshlink, #back {
+    text-align: right;
+    margin-bottom: 10px;
+    /* vertical-align: middle; */
+}
+
+footer {
+    background: rgb(19, 19, 19);
+    color: white;
+    margin-top: 40px;
+    margin-bottom: -100%;
+    padding: 4px;
+}
+
+footer a {
+    color: rgb(248, 175, 242);
 }
