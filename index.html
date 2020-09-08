@@ -130,7 +130,7 @@
           $tweetUser.prependTo($tweet).append()
 
           var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
-          $message.text(index + ' ' + tweet.message);
+          $message.text(tweet.message);
           $message.appendTo($tweet);
 
           var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
@@ -158,9 +158,8 @@
       $("#tweetButton").click(() => {
         writeTweet($("#twitterText").val());
         refreshFeed();
+        $("#twitterText").val("");
         // text area color change on tweet
-
-        $("#twitterText",).val("");
 
         var randomColor1 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
         var randomColor2 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
@@ -171,52 +170,6 @@
       });
 
 
-
-
-
-
-      const createNewTweet = () => {
-        // console.log(writeTweet(message));
-
-        var $tweet = $('<div></div>').addClass("tweet");  // TWEET DIV
-
-        $tweetUser = $('<div></div>').addClass("tweetUser"); // TWEETUSER CLASS
-        $tweetUser.text('@' + window.visitor); // @USERNAME:
-        $tweetUser.prependTo($tweet);
-
-        var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
-        var message = $("#twitterText").val();
-        $message.text(message);
-        $message.appendTo($tweet);
-
-        var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
-        $timestamp.text(moment().format("MM ddd, YYYY hh:mm:ss a") + ' // ' + 'Posted ' + moment().fromNow());
-        $timestamp.appendTo($tweet);
-
-        $tweet.appendTo("#feedlist");
-        $("#twitterText",).val("");
-
-
-        // text area color change on tweet
-        // var randomColor1 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-        // var randomColor2 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-        // var lineargradient = "linear-gradient(246deg, " + randomColor1 + ' 24%, ' + randomColor2 + ' 100%)'
-
-        // $("#twitterText").css("background", lineargradient);
-
-
-
-
-      };
-
-
-
-
-
-      // $(".tweetUser").click((event) => { // Should call on function that filters for 
-      //   var username = $(event.target).text().replace('@', '');
-      //   usersFeedRefresh(username);
-      // });
 
       $(".tweetUser").click((event) => { // Should call on function that filters for 
         var username = $(event.target).text().replace('@', '');
@@ -238,10 +191,8 @@
 
       // });
 
-      // users is an array of strings -- all the usernames that you're following.
-      // streams is an object with two properties, users and home.
-      // streams.home is an array of all tweets from all the users you're following.
-      // streams.users is an object with properties for each user. streams.users.shawndrost has all of shawndrost's tweets.
+
+
 
     });
 
@@ -283,8 +234,6 @@
         $tweet.appendTo($feed);
         index -= 1;
       }
-
-
     }
 
 
@@ -298,13 +247,6 @@
     <p>Developed for HackReactor2020 // Made by <a href="https://github.com/lydzb123">@lydzb123</a></p>
 
   </footer>
-
-  <!-- Define JS functions:
-createNewTweet
-reloadFeed
-clickUser
-clickHash -->
-
 
 
 
