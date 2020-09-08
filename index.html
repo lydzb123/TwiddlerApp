@@ -63,7 +63,7 @@
       // UPDATEPANEL CLASS (Text Area, Character Count, Update Button)
       $('.header').append('<div class="updatePanel"></div>');
       $('.updatePanel').html('<textarea name="text" maxlength="280" id="twitterText" placeholder="What are you up to? "></textarea>');
-      $('.updatePanel').append('<div id="twitterTextCount"></div><br><button type="submit" id="tweetButton">Tweet</button>');
+      $('.updatePanel').append('<div id="twitterTextCount"></div><br><button type="submit" id="tweetButton">Twiddle</button>');
 
 
 
@@ -82,7 +82,6 @@
         window.visitor = $("#username").val();
 
         $.modal.close();
-
         return false;
       })
 
@@ -90,12 +89,6 @@
       $("#signup").click(() => {
         alert('The Sign Up feature is currently unavailable.')
       })
-
-
-
-
-
-
 
 
       // CHARACTER TEXT COUNT FUNCTION (Set Max, Changes Count on Keyup)
@@ -112,9 +105,12 @@
       // TWITTER FEED
       var $feed = $('.feed');
       $feed.html('<div id="feedlist"></div');
-      $feed.prepend('<div id="refreshlink">Refresh<img src="https://img.icons8.com/android/24/000000/refresh.png"/></div >').addClass("navbar");
+      $feed.prepend('<div id="refreshlink">Refresh<img src="https://img.icons8.com/android/24/000000/refresh.png"/></div >');
 
 
+
+
+      // LOADFEED FUNCTION
 
       const loadFeed = () => {
         var username;
@@ -135,11 +131,10 @@
 
           var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
 
-          let date = moment();
+          var date = moment(tweet.created_at);
 
 
-
-          $timestamp.text(moment().format("MM ddd, YYYY hh:mm:ss a") + ' // ' + 'Posted ' + moment(date).fromNow());
+          $timestamp.text('Posted ' + date.format("MM ddd, YYYY hh:mm:ss a"));
 
           // $timestamp.text('Posted on ' + tweet.created_at);
           $timestamp.appendTo($tweet);
@@ -153,12 +148,13 @@
 
 
 
-
+      // TWIDDLE
 
       $("#tweetButton").click(() => {
         writeTweet($("#twitterText").val());
         refreshFeed();
         $("#twitterText").val("");
+
         // text area color change on tweet
 
         var randomColor1 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
@@ -167,33 +163,30 @@
 
         $("#twitterText").css("background", lineargradient);
 
+
       });
 
 
 
-      $(".tweetUser").click((event) => { // Should call on function that filters for 
-        var username = $(event.target).text().replace('@', '');
-        usersFeedRefresh(username);
-      });
+      const userClick = () => {
+        $(".tweetUser").click((event) => {
+          var username = $(event.target).text().replace('@', '');
+          usersFeedRefresh(username);
+        });
+      }
+      userClick();
+
 
       const refreshFeed = () => {
         $("#feedlist").hide().empty().show().fadeIn('fast');
         loadFeed();
+        userClick();
+
       }
 
       $("#refreshlink").click(() => {
         refreshFeed();
       });
-
-
-      // $("#back").click(() => {
-      //   window.location.reload();
-
-      // });
-
-
-
-
     });
 
 
@@ -206,8 +199,8 @@
       // COMEBACK TO FIX THE FEED!
       var $feed = $('.feed');
       $feed.html('');
-      $feed.prepend('<div id ="back"><i class="fas fa-arrow-left"></i> Back </div>').addClass("navbar");
-      ;
+
+      $feed.prepend('<div id ="back">Back<img src="https://img.icons8.com/android/24/000000/circled-left-2.png"/></div>');
 
       while (index >= 0) {
 
