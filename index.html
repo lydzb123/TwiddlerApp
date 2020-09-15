@@ -170,6 +170,7 @@
 
 
       const refreshFeed = () => {
+
         $("#feedlist").hide().empty().show().fadeIn('fast');
         loadFeed();
         userClick();
@@ -179,47 +180,53 @@
       $("#refreshlink").click(() => {
         refreshFeed();
       });
+
+
+
+
+      const usersFeedRefresh = (username) => {
+        // console.log(username);
+        var index = streams.users[username].length - 1;
+
+        // COMEBACK TO FIX THE FEED! 
+        var $feed = $('.feed');
+        $feed.html('<div id="feedlist"></div');
+
+
+        $feed.prepend('<div id ="backRefresh">Back<img src="https://img.icons8.com/android/24/000000/circled-left-2.png"/></div >');
+
+
+        $("#backRefresh").click(() => {
+          refreshFeed();
+        });
+
+
+        while (index >= 0) {
+
+          var tweet = streams.users[username][index];
+          // console.log('index: ' + index + 'tweet: ' + tweet.message);
+
+          var $tweet = $('<div></div>').addClass("tweet");  // TWEET CLASS $ is representational of the jqwery dom
+
+          $tweetUser = $('<div></div>').addClass("tweetUser"); // TWEETUSER CLASS
+          $tweetUser.text('@' + tweet.user); // @USERNAME:
+
+          $tweetUser.prependTo($tweet);
+
+          var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
+          $message.text(tweet.message);
+          $message.appendTo($tweet);
+
+          var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
+          $timestamp.text(moment().format("MM ddd, YYYY hh:mm:ss a"));
+          $timestamp.appendTo($tweet);
+
+          $tweet.appendTo('#feedlist');
+          index -= 1;
+        }
+      }
     });
 
-
-
-
-    const usersFeedRefresh = (username) => {
-      // console.log(username);
-      var index = streams.users[username].length - 1;
-
-      // COMEBACK TO FIX THE FEED! 
-      var $feed = $('.feed');
-      $feed.html('');
-
-      $feed.prepend('<div id ="back">Back<img src="https://img.icons8.com/android/24/000000/circled-left-2.png"/></div>');
-
-      while (index >= 0) {
-
-
-        var tweet = streams.users[username][index];
-        // console.log('index: ' + index + 'tweet: ' + tweet.message);
-
-        var $tweet = $('<div></div>').addClass("tweet");  // TWEET CLASS $ is representational of the jqwery dom
-
-        $tweetUser = $('<div></div>').addClass("tweetUser"); // TWEETUSER CLASS
-        $tweetUser.text('@' + tweet.user); // @USERNAME:
-
-
-        $tweetUser.prependTo($tweet);
-
-        var $message = $('<div></div>').addClass("message"); // MESSAGE CLASS
-        $message.text(tweet.message);
-        $message.appendTo($tweet);
-
-        var $timestamp = $('<div></div)').addClass("timestamp"); // TIMESTAMP CLASS
-        $timestamp.text(moment().format("MM ddd, YYYY hh:mm:ss a"));
-        $timestamp.appendTo($tweet);
-
-        $tweet.appendTo($feed);
-        index -= 1;
-      }
-    }
 
   </script>
   <footer>
